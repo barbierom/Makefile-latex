@@ -19,7 +19,7 @@ III. Usage
 1. to get info type
 
 	```
-	$ make
+	$ make help
 	```
 
 2. for start the pdf compiling type

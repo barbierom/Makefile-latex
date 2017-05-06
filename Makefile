@@ -1,6 +1,6 @@
 #TODO
-#	1)[   ]	compile also for the pdf
-#	2)[ x ]	compile with and without bibliograpy
+#	1)[ x ]	compile also for the pdf
+#	2)[ x ]	compile with bibliograpy
 #	3)[   ]	create a compressed dir if of the source and dvi files
 #	4)[ x ]	higligths the outptut of the command makefile
 #	5)[ x ]	insert a help command for the Makefile
@@ -13,9 +13,9 @@ BIBLIOGRAFIA 		= bibliografia.bib
 PRINCIPALE_TEX 		= $(PRINCIPALE).tex
 PRINCIPALE_DVI 		= $(PRINCIPALE).dvi
 PRINCIPALE_PDF 		= $(PRINCIPALE).pdf
-PRINCIPALE_LOG		= $(PRINCIPALE).log
-FILE_CLEAN 		= *.aux *.bbl *.blg *.brf *.idx *.ilg *.ind  *.toc *.xml *.out *-blx.bib
-FILE_DISTCLEAN 		= $(PRINCIPALE_PDF) *.log
+PRINCIPALE_DONE		= .$(PRINCIPALE).done
+FILE_CLEAN 		= *.aux *.bbl *.blg *.brf *.idx *.ilg *.ind  *.toc *.xml *.out *-blx.bib *.log
+FILE_DISTCLEAN 		= $(PRINCIPALE_PDF) $(PRINCIPALE_DONE)
 
 OUTPUTS 		= Outputs
 FIGURES			= Figures
@@ -45,24 +45,25 @@ DONE_STRING=[ $(COLOR_GREEN)Done$(COLOR_RESET) ]
 all: pdf ## all -->  generation of pdf
 
 #################### pdf
-pdf: $(PRINCIPALE_LOG) ## generation of pdf file in the $(OUTPUTS) direcotry
+pdf: $(PRINCIPALE_DONE) ## generation of pdf file in the $(OUTPUTS) direcotry
 pdfshow: ## show the pdf file using evince
 	evince  $(OUTPUTS)/$(PRINCIPALE_PDF)
 
-$(PRINCIPALE_LOG): $(PRINCIPALE_TEX) ##
+$(PRINCIPALE_DONE): $(PRINCIPALE_TEX) ##
 	@echo "$(START_STRING) $(COLOR_ORNG)pdflatex$(COLOR_RESET) compling ..."	
-	-pdflatex $(PRINCIPALE)
+	pdflatex $(PRINCIPALE)
 	@echo "$(START_STRING) $(COLOR_ORNG)bibtex$(COLOR_RESET) compling ..."	
-	-bibtex $(PRINCIPALE)
+	bibtex $(PRINCIPALE)
 	#@echo "$(START_STRING) $(COLOR_ORNG)makeindex$(COLOR_RESET) compling ..."	
 	#-makeindex $(PRINCIPALE)
 	@echo "$(START_STRING) $(COLOR_ORNG)pdflatex$(COLOR_RESET) compling ..."	
-	-pdflatex $(PRINCIPALE)
+	pdflatex $(PRINCIPALE)
 	@echo "$(START_STRING) $(COLOR_ORNG)pdflatex$(COLOR_RESET) compling ..."	
-	-pdflatex $(PRINCIPALE)
+	pdflatex $(PRINCIPALE)
 	@echo "$(START_STRING) $(COLOR_ORNG)move outputs $(COLOR_RESET) ..."	
 	-mkdir $(OUTPUTS)	
 	-mv $(PRINCIPALE_PDF) $(OUTPUTS)/
+	echo "good job bro" >> $(PRINCIPALE_DONE)
 	@echo "$(DONE_STRING)"
 
 
