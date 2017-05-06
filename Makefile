@@ -1,6 +1,6 @@
 #TODO
 #	1)[   ]	compile also for the pdf
-#	2)[   ]	compile with and without bibliograpy
+#	2)[ x ]	compile with and without bibliograpy
 #	3)[   ]	create a compressed dir if of the source and dvi files
 #	4)[ x ]	higligths the outptut of the command makefile
 #	5)[ x ]	insert a help command for the Makefile
@@ -13,11 +13,13 @@ BIBLIOGRAFIA 		= bibliografia.bib
 PRINCIPALE_TEX 		= $(PRINCIPALE).tex
 PRINCIPALE_DVI 		= $(PRINCIPALE).dvi
 PRINCIPALE_PDF 		= $(PRINCIPALE).pdf
-FILE_CLEAN 		= *.aux *.bbl *.blg *.brf *.idx *.ilg *.ind *.log *.toc
-FILE_DISTCLEAN 		= $(PRINCIPALE_DVI)$ $(PRINCIPALE_PDF)
+PRINCIPALE_LOG		= $(PRINCIPALE).log
+FILE_CLEAN 		= *.aux *.bbl *.blg *.brf *.idx *.ilg *.ind  *.toc *.xml *.out *-blx.bib
+FILE_DISTCLEAN 		= $(PRINCIPALE_PDF) *.log
 
 OUTPUTS 		= Outputs
-
+FIGURES			= Figures
+CONTENTS		= Contents
 
 #################### color code
 COLOR_RESET=\033[0;39;49m
@@ -37,56 +39,40 @@ DONE_STRING=[ $(COLOR_GREEN)Done$(COLOR_RESET) ]
 
 
 .PHONY: dvi dvishow pdf pdfshow clean distclean help
-.DEFAULT_GOAL:= help
+#.DEFAULT_GOAL:= help
 
 #################### all
 all: pdf ## all -->  generation of pdf
 
-
-##################### dvi
-dvi: $(PRINCIPALE_DVI)  ## generation and compiling of dvi file in the $(OUTPUTS) direcotry
-
-dvishow:  ## show the dvi file using xdvi
-	xdvi $(OUTPUTS)/$(PRINCIPALE_DVI)
-
-$(PRINCIPALE_DVI): $(PRINCIPALE_TEX) ## 
-	@echo "$(START_STRING) $(COLOR_YELO)latex$(COLOR_RESET) compling ..."
-	latex $(PRINCIPALE)
-	@echo "$(DONE_STRING)"
-	-mkdir $(OUTPUTS)	
-	-mv $(PRINCIPALE_DVI) $(OUTPUTS)/ 
-	#bibtex $(PRINCIPALE)
-	#makeindex $(PRINCIPALE)
-	#latex $(PRINCIPALE)
-	#latex $(PRINCIPALE)
-
-
-
-
 #################### pdf
-pdf: $(PRINCIPALE_PDF) ## generation of pdf file in the $(OUTPUTS) direcotry
+pdf: $(PRINCIPALE_LOG) ## generation of pdf file in the $(OUTPUTS) direcotry
 pdfshow: ## show the pdf file using evince
 	evince  $(OUTPUTS)/$(PRINCIPALE_PDF)
 
-$(PRINCIPALE_PDF): $(PRINCIPALE_TEX) ##
+$(PRINCIPALE_LOG): $(PRINCIPALE_TEX) ##
 	@echo "$(START_STRING) $(COLOR_ORNG)pdflatex$(COLOR_RESET) compling ..."	
 	-pdflatex $(PRINCIPALE)
-	@echo "$(DONE_STRING)"
+	@echo "$(START_STRING) $(COLOR_ORNG)bibtex$(COLOR_RESET) compling ..."	
+	-bibtex $(PRINCIPALE)
+	#@echo "$(START_STRING) $(COLOR_ORNG)makeindex$(COLOR_RESET) compling ..."	
+	#-makeindex $(PRINCIPALE)
+	@echo "$(START_STRING) $(COLOR_ORNG)pdflatex$(COLOR_RESET) compling ..."	
+	-pdflatex $(PRINCIPALE)
+	@echo "$(START_STRING) $(COLOR_ORNG)pdflatex$(COLOR_RESET) compling ..."	
+	-pdflatex $(PRINCIPALE)
+	@echo "$(START_STRING) $(COLOR_ORNG)move outputs $(COLOR_RESET) ..."	
 	-mkdir $(OUTPUTS)	
-	-mv $(PRINCIPALE_PDF) $(OUTPUTS)/ 
-	#bibtex $(PRINCIPALE)
-	#makeindex $(PRINCIPALE)
-	#pdflatex $(PRINCIPALE)
-	#pdflatex $(PRINCIPALE)
+	-mv $(PRINCIPALE_PDF) $(OUTPUTS)/
+	@echo "$(DONE_STRING)"
+
 
 ################### clean functions
 
-clean: ## remote latex files
+clean: ## remote latex files. The log file is not erased
 	-rm -f $(FILE_CLEAN)
 
-distclean: clean ## remove latex files included the pdf and dvi
-	-rm -f $(OUTPUTS)/$(PRINCIPALE_DVI)
-	-rm -f $(OUTPUTS)/$(PRINCIPALE_PDF)
+distclean: clean ## remove latex files included the pdf and dvi and log
+	-rm -f $(FILE_DISTCLEAN)
 
 
 ################### create a mini man

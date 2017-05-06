@@ -1,5 +1,4 @@
-\documentclass[10pt]{article}
-
+\documentclass[11pt]{article} 
 % Euler for math | Palatino for rm | Helvetica for ss | Courier for tt
 \renewcommand{\rmdefault}{ppl} 		% rm
 \linespread{1.05} 			% Palatino needs more leading
@@ -8,9 +7,35 @@
 \usepackage{euler} 			% math
 \normalfont
 \usepackage[T1]{fontenc}
-
 \usepackage{lipsum}
 \usepackage{makeidx}
+\usepackage{graphicx}			% include the figure in latex
+\usepackage{hyperref}			% include links. It is usefull also for the back citation in the bibliograpy
+
+\setlength{\parindent}{0pt}		% remove identaion of all paragraphs
 
 
-\input{report.tex}
+\usepackage[backend=bibtex,
+	sorting=none,
+	doi=false,
+	url=false,
+	isbn=false,
+	backref=true,
+	eprint=false]{biblatex}		% bibliografia con hyprelink!
+\addbibresource{bibliography.bib}	
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Contents
+\title{How to Structure a LaTeX Document}
+\author{Matteo Barbiero}
+\date{May, 7 }
+
+\begin{document}
+	\maketitle
+	\tableofcontents
+	\input{Contents/report.tex}
+	\newpage		
+	\printbibliography
+\end{document}
+
+
