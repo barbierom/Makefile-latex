@@ -46,14 +46,15 @@ all: pdf ## all -->  generation of pdf
 
 #################### pdf
 pdf: $(PRINCIPALE_DONE) ## generation of pdf file in the $(OUTPUTS) direcotry
+	
 pdfshow: ## show the pdf file using evince
-	evince  $(OUTPUTS)/$(PRINCIPALE_PDF)
+	evince  $(PRINCIPALE_PDF)
 
 $(PRINCIPALE_DONE): $(PRINCIPALE_TEX) ##
 	@echo "$(START_STRING) $(COLOR_ORNG)pdflatex$(COLOR_RESET) compling ..."	
 	pdflatex $(PRINCIPALE)
 	@echo "$(START_STRING) $(COLOR_ORNG)bibtex$(COLOR_RESET) compling ..."	
-	bibtex $(PRINCIPALE)
+	-bibtex $(PRINCIPALE)
 	#@echo "$(START_STRING) $(COLOR_ORNG)makeindex$(COLOR_RESET) compling ..."	
 	#-makeindex $(PRINCIPALE)
 	@echo "$(START_STRING) $(COLOR_ORNG)pdflatex$(COLOR_RESET) compling ..."	
@@ -62,17 +63,15 @@ $(PRINCIPALE_DONE): $(PRINCIPALE_TEX) ##
 	pdflatex $(PRINCIPALE)
 	@echo "$(START_STRING) $(COLOR_ORNG)move outputs $(COLOR_RESET) ..."	
 	-mkdir $(OUTPUTS)	
-	-mv $(PRINCIPALE_PDF) $(OUTPUTS)/
+	-mv $(FILE_CLEAN) $(OUTPUTS)/
 	echo "good job bro" >> $(PRINCIPALE_DONE)
 	@echo "$(DONE_STRING)"
 
 
 ################### clean functions
 
-clean: ## remote latex files. The log file is not erased
-	-rm -f $(FILE_CLEAN)
-
-distclean: clean ## remove latex files included the pdf and dvi and log
+clean: ## remove latex files the pdf and the .done file
+	-rm -f $(OUTPUTS)/*.*
 	-rm -f $(FILE_DISTCLEAN)
 
 
