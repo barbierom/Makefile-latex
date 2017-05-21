@@ -1,0 +1,32 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{braket}
+\usepackage{hyperref}			% include links. It is usefull also for the back citation in the bibliograpy
+\usepackage{booktabs} 			%nice table. examples: https://tex.stackexchange.com/questions/112343/beautiful-table-samples
+\setlength{\parindent}{0pt}		% remove identaion of all paragraphs
+
+\usepackage{lipsum}
+
+
+%\usepackage{sectsty}
+%\allsectionsfont{\sffamily}		% used in order to change all sections fonts into sans-serif
+\usepackage[hang]{caption}		% used in order to change the font of all the capion, like table and figure
+\captionsetup{font={small}, textfont={sf}, labelfont={bf,sf}}
+
+\linespread{1.15}\selectfont		% modify the interline from 1 to 1.15
+
+\usepackage[backend=bibtex,
+	sorting=none,
+	doi=false,
+	url=false,
+	isbn=false,
+	backref=true,
+	eprint=false]{biblatex}		% bibliografia con hyprelink!
+

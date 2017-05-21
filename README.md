@@ -3,16 +3,14 @@
 
 I. File list
 ---------------
-* ```main.tex```: In this file the documentclass and the inclued libraries are defined.This file is going to define the page template. In this file you have also to insert the report.tex file. Usually, the content files will be put on Contents/ directory
-* ```bibliograpy.bib```: This is the bibliograpy. The inclusion is not already implemented
+* ```template_xxx.tex```: In this file the documentclass and the inclued libraries are defined.This file is going to define the page template. 
+* ```main.tex```: This file is goid to include the template_xxx.tex and the reports files written in the Contents/ directory. Inside the Contents theare is also the bibliography.bib.
 
 II. Directory list
 ---------------
-* ```Contents```:  In this directory you write the report using the latex languages. In this file you dont care abount the page template. The file has  to be included in the main.tex file. If you are writing a book, the best solution is to create differents directory with chapeter_x.tex inside. Inside the directoryyou can put also the figure in order to maintein the proper organizaion of the file list.
+* ```Contents```:  In this directory you write the report using the latex languages. In this file you dont care abount the page template. The file isndie the Contents/ have  to be included in the main.tex file. If you are writing a book, the best solution is to create differents directory with chapeter_x.tex inside. Inside the directoryyou can put also the figure in order to maintein the proper organizaion of the file list.
 * ```Figures```: here you are going to put the Figures.
-* ```Output```: In this directory the pdf and dvi result is stored  
-* ```report.tex```:
-
+* ```Output```: In this directory, the latex ganerated files are stored.
 
 III. Usage
 --------------

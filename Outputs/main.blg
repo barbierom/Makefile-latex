@@ -2,11 +2,6 @@ This is BibTeX, Version 0.99d (TeX Live 2016/Debian)
 Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
 The top-level auxiliary file: main.aux
 The style file: biblatex.bst
-This database file appears more than once: bibliography.bib
----line 20 of file main.aux
- : \bibdata{main-blx,bibliography,bibliography
- :                                            }
-I'm skipping whatever remains of this command
 Reallocated glb_str_ptr (elt_size=4) to 20 items from 10.
 Reallocated global_strs (elt_size=20001) to 20 items from 10.
 Reallocated glb_str_end (elt_size=4) to 20 items from 10.
@@ -22,13 +17,13 @@ Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Database file #1: main-blx.bib
-Database file #2: bibliography.bib
+Database file #2: Contents/bibliography.bib
 Biblatex version: 3.3
 Reallocated wiz_functions (elt_size=4) to 9000 items from 6000.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 You've used 4 entries,
             6256 wiz_defined-function locations,
-            1205 strings with 9100 characters,
+            1205 strings with 9109 characters,
 and the built_in function-call counts, 16510 in all, are:
 = -- 1109
 > -- 341
@@ -67,4 +62,3 @@ warning$ -- 0
 while$ -- 219
 width$ -- 0
 write$ -- 117
-(There was 1 error message)

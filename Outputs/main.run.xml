@@ -83,7 +83,7 @@
       <file>main-blx.bib</file>
     </requires>
     <requires type="editable">
-      <file>bibliography.bib</file>
+      <file>Contents/bibliography.bib</file>
     </requires>
     <requires type="static">
       <file>biblatex.bst</file>
