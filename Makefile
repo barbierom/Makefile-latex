@@ -1,7 +1,7 @@
 #TODO
 #	1)[ x ]	compile also for the pdf
 #	2)[ x ]	compile with bibliograpy
-#	3)[   ]	create a compressed dir if of the source and dvi files
+#	3)[ x ]	create a compressed dir if of the source and dvi files
 #	4)[ x ]	higligths the outptut of the command makefile
 #	5)[ x ]	insert a help command for the Makefile
 
@@ -14,7 +14,7 @@ PRINCIPALE_TEX 		= $(PRINCIPALE).tex
 PRINCIPALE_DVI 		= $(PRINCIPALE).dvi
 PRINCIPALE_PDF 		= $(PRINCIPALE).pdf
 PRINCIPALE_DONE		= .$(PRINCIPALE).done
-FILE_CLEAN 		= *.aux *.bbl *.blg *.brf *.idx *.ilg *.ind  *.toc *.xml *.out *-blx.bib *.log
+FILE_CLEAN 		= *.aux *.bbl *.blg *.brf *.idx *.ilg *.ind  *.toc *.xml *.out *-blx.bib *.log *.snm *.nav
 FILE_DISTCLEAN 		= $(PRINCIPALE_PDF) $(PRINCIPALE_DONE)
 
 OUTPUTS 		= Outputs
@@ -39,13 +39,13 @@ DONE_STRING=[ $(COLOR_GREEN)Done$(COLOR_RESET) ]
 
 
 .PHONY: dvi dvishow pdf pdfshow clean distclean help
-#.DEFAULT_GOAL:= help
+#.DEFAULT_GOAL:= help  # if not commented, the 'make' command will give you 'make help' command
 
 #################### all
 all: pdf ## all -->  generation of pdf
 
 #################### pdf
-pdf: $(PRINCIPALE_DONE) ## generation of pdf file in the $(OUTPUTS) direcotry
+pdf: $(PRINCIPALE_DONE) ## generation of pdf file 
 	
 pdfshow: ## show the pdf file using evince
 	evince  $(PRINCIPALE_PDF)
@@ -66,14 +66,19 @@ $(PRINCIPALE_DONE): $(PRINCIPALE_TEX) ##
 	-mv $(FILE_CLEAN) $(OUTPUTS)/
 	echo "good job bro" >> $(PRINCIPALE_DONE)
 	@echo "$(DONE_STRING)"
+	evince $(PRINCIPALE_PDF)
 
+
+################### compress working directory
+zip: ## create a zip directory
+	-zip -r $(PRINCIPALE).zip *
 
 ################### clean functions
 
 clean: ## remove latex files the pdf and the .done file
 	-rm -f $(OUTPUTS)/*.*
 	-rm -f $(FILE_DISTCLEAN)
-
+	-rm $(PRINCIPALE).zip
 
 ################### create a mini man
 help: ## get some help :)

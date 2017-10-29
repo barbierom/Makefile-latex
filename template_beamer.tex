@@ -1,0 +1,124 @@
+\documentclass[8pt]{beamer}
+
+\setbeamertemplate{navigation symbols}{}
+
+\usepackage[sc]{mathpazo} % serif and math mode
+\usepackage{tgadventor}		% sans serif font
+\renewcommand*\familydefault{\sfdefault} % Base font of the document is sans serif
+\DeclareMathSizes{9}{10.3}{6.5}{6.5} % Match math and ss text font size
+\DeclareMathSizes{8}{9.5}{6}{6}
+
+\usepackage[T1]{fontenc}       
+\usepackage[utf8]{inputenc}    % pour les accents (mettre latin1 pour windows au lieu de utf8)
+%\usepackage[frenchb]{babel}    % le documents est en français
+
+\usepackage{natbib}
+%\newcommand{\newblock}{}  % Ce truc met une erreur - Je ne sais plus à quoi ça sert...
+
+\usepackage{amsmath}           % un packages mathématiques
+\usepackage{latexsym}                % to get LASY symbols     
+\usepackage{amsfonts}  
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{dcolumn}
+\usepackage{color}
+\usepackage{mathrsfs}
+\usepackage{xcolor}            % pour définir plus de couleurs et colorer les math
+\usepackage{graphicx} 
+\usepackage{tikz}  
+%%%%%
+% For every picture that defines or uses external nodes, you'll have to
+% apply the 'remember picture' style. To avoid some typing, we'll apply
+% the style to all pictures.
+\tikzstyle{every picture}+=[remember picture]
+
+% By default all math in TikZ nodes are set in inline mode. Change this to
+% displaystyle so that we don't get small fractions.
+\everymath{\displaystyle}
+%%%%%
+
+\usepackage{xmpmulti}
+\usepackage{pgf}
+\usepackage[percent]{overpic}		% pour inclurer text et.ou figure par dessus une figure remplacer "abs" par "percent" pour relatif
+
+\usepackage{beamerthemesplit}
+
+\usepackage[absolute,showboxes,overlay]{textpos}     % déclaration du package
+\textblockorigin{0cm}{0cm}                               % origine des positions
+%\TPshowboxestrue                                     % affiche le contour des textblock
+\TPshowboxesfalse                                    % n'affiche pas le contour des textblock\\
+ 
+\setbeamercovered{transparent}
+\mode<presentation>
+\usetheme[numbers,totalnumber,compress,sidebarshades]{Madrid}
+\setbeamertemplate{footline}[frame number]
+ 
+%\definecolor{bellblue}{RGB}{51,102,166}
+\definecolor{bellblue}{RGB}{27,136,202}
+
+\usecolortheme[named=bellblue]{structure}
+\useinnertheme{circles}
+\usefonttheme[onlymath]{serif}
+\setbeamercovered{transparent}
+
+%\setbeamercolor{math text}{fg=green!45!black}
+\setbeamercolor{title}{bg=bellblue}
+\setbeamercolor{frametitle}{bg=bellblue}
+%\setbeamercolor{footline}{bg=black,fg=white}
+%\setbeamercolor{author in head/foot}{bg=black,fg=white}
+%\setbeamercolor{title in head/foot}{bg=white!45!black}
+\setbeamercolor{block title}{bg=white!45!black}
+%\setbeamercolor{block title example}{bg=white!45!black}
+%\setbeamercolor{block title alerted}{bg=white!15!black}
+
+\setbeamercolor{block title}{fg = bellblue, bg = white}
+\setbeamercolor{block body}{fg = white, bg = bellblue}
+\setbeamertemplate{blocks}[rounded][shadow]
+
+%\setbeamerfont{frametitle}{series=\bfseries,size=\normalsize}
+\setbeamerfont{frametitle}{size=\Large}
+
+%the needed packages 
+\usepackage[absolute]{textpos} 
+%\usepackage[colorgrid,texcoord]{eso-pic}
+%adjust the TPHorizModule and TPHorizModule units to the displayed mm %grid 
+\TPGrid{128}{96} 
+%puts a graphic at the absolute position described by the grid 
+%#1 x, #2 y, #3 width, #4 height, #5 graphic 
+\newcommand\putpic[5]{% 
+\begin{textblock}{#3}(#1,#2) 
+\includegraphics[width=#3\TPHorizModule, 
+height=#4\TPVertModule]{#5} 
+\end{textblock} 
+} 
+
+%\renewcommand{\phi}{\varphi}
+\renewcommand{\>}{\right \rangle}
+\newcommand{\<}{\left \langle}
+\newcommand{\ket}[1]{\left |#1\>}
+\newcommand{\bra}[1]{\<#1\right |}
+\newcommand{\be}{\begin{equation}}
+\newcommand{\ee}{\end{equation}}
+\newcommand{\bea}{\begin{eqnarray}}
+\newcommand{\eea}{\end{eqnarray}}
+\newcommand{\Real}{\mathbb{R}}
+
+\newcommand{\btVFill}{\vskip0pt plus 1filll} % to push note at the bottom of the frame
+
+\newcommand{\backupbegin}{
+   \newcounter{framenumberappendix}
+   \setcounter{framenumberappendix}{\value{framenumber}}
+}
+\newcommand{\backupend}{
+   \addtocounter{framenumberappendix}{-\value{framenumber}}
+   \addtocounter{framenumber}{\value{framenumberappendix}} 
+}
+
+\newcommand{\bellRef}[3]{\textcolor{gray}{\textit{{\footnotesize #1, #2 (#3)}}}}
+
+\newcommand*\circled[3]{\tikz[baseline=(char.base)]{
+            \node[shape=circle,draw=#1,opacity=#2,inner sep=2pt] (char) {\textcolor{#1}{\textbf{#3}}};}}
+
+\newcommand{\bellhl}[1]{\textcolor{bellblue}{\textbf{#1}}}
+
+

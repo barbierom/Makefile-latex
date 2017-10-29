@@ -1,17 +1,48 @@
-\input{template_report_simple.tex}
-
+%\input{template_report_simple.tex}
+\input{template_beamer.tex}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Contents
 \title{How to Structure a LaTeX Document}
 \author{Matteo Barbiero}
 \date{May, 7 }
 
-\addbibresource{Contents/bibliography.bib}	
+% used for the report template
+%\addbibresource{Contents/bibliography.bib}	
 \begin{document}
-	\maketitle
-	\tableofcontents
-	\input{Contents/report.tex}
-	\newpage		
-	\printbibliography
+%	\maketitle
+%	\tableofcontents
+%	\input{Contents/report.tex}
+%	\newpage		
+%	\printbibliography
+
+
+\include{Frames/Frame_Title}
+\include{Frames/Frame_Setup_Pic}
+\section{Introduction: Bose-Bose miscible mixture without buoyancy}
+\include{Frames/Frame_Outline} %% OUTLINE 1/3
+\include{Frames/Frame_Intro_BoseBose}
+\include{Frames/Frame_Spinor_Preparation}
+	{%% OUTLINE 2/3
+	\usebackgroundtemplate{\includegraphics[width=\paperwidth]{Figures/MOT-picture.jpg}}
+	\againframe<5>[t,plain]{Outline}
+	}
+\section{Spin-Dipole Polarizability}
+\include{Frames/Frame_SD_Polarizability}
+	{%% OUTLINE 3/3
+	\usebackgroundtemplate{\includegraphics[width=\paperwidth]{Figures/MOT-picture.jpg}}
+	\againframe<6>[t,plain]{Outline}
+	}
+\section{Spin-Dipole Oscillation}
+\include{Frames/Frame_SD_Oscillation}
+\include{Frames/Frame_Outlook}
+\section{Conclusion}
+\include{Frames/Frame_CCL}
+\include{Frames/Frame_Collab}
+
+
+
+
+
+
 \end{document}
 
 

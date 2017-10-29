@@ -10,10 +10,15 @@ II. Directory list
 ---------------
 * ```Contents```:  In this directory you write the report using the latex languages. In this file you dont care abount the page template. The file isndie the Contents/ have  to be included in the main.tex file. If you are writing a book, the best solution is to create differents directory with chapeter_x.tex inside. Inside the directoryyou can put also the figure in order to maintein the proper organizaion of the file list.
 * ```Figures```: here you are going to put the Figures.
-* ```Output```: In this directory, the latex ganerated files are stored.
+* ```Output```: In this directory, the latex shitty ganerated files are stored.
 
 III. Usage
 --------------
+0. standard run
+	```
+	$ make
+	```
+
 1. to get info type
 
 	```
